@@ -65,12 +65,18 @@ pub struct Announcement {
 #[derive(Debug, Deserialize)]
 #[allow(dead_code)]
 pub struct Todo {
-    pub id: u64,
-    pub title: String,
+    #[serde(default)]
+    pub id: Option<u64>,
+    #[serde(default)]
+    pub title: Option<String>,
+    #[serde(default)]
     pub assignment_id: Option<u64>,
+    #[serde(default)]
     pub due_at: Option<DateTime<Utc>>,
-    pub html_url: String,
-    pub course_id: u64,
+    #[serde(default)]
+    pub html_url: Option<String>,
+    #[serde(default)]
+    pub course_id: Option<u64>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -82,7 +82,9 @@ fn main() -> Result<(), Box<dyn Error>> {
             let todos = canvas.get_todos()?;
             println!("Todo items:");
             for todo in todos {
-                println!("  {}: {}", todo.id, todo.title);
+                let title = todo.title.as_deref().unwrap_or("Untitled");
+                let due = todo.due_at.map_or("No due date".to_string(), |d| d.to_string());
+                println!("  {} (Due: {})", title, due);
             }
         }
         Commands::Modules(args) => {
